@@ -31,3 +31,9 @@ final class LogEntry {
         self.dateNext = Calendar.current.date(byAdding: DateComponents(day: frequency), to: Date()) ?? Date()
     }
 }
+
+extension LogEntry {
+    static let waterPlants = LogEntry(content: "Water plants", frequency: 7)
+    static let cleanDishWasherFilter = LogEntry(content: "Clean dish washer filter", frequency: 28)
+    static let vacuum = LogEntry(content: "Vacuum", frequency: 7)
+}
