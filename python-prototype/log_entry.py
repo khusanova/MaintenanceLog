@@ -1,15 +1,9 @@
 from datetime import date, timedelta
 
 
-ALERTS = ['green','yellow', 'red', 'infrared']
+class LogEntry:
+    ALERTS = ['green', 'yellow', 'red', 'infrared']
 
-
-class TaskEntry:
-    content: str
-    frequency: int
-    date_last: datetime
-    date_next: datetime
-    alert_state: int
 
     def __init__(self, content: str, frequency: int):
         self.content = content
