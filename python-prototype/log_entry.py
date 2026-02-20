@@ -13,9 +13,9 @@ class LogEntry:
         self.date_last = date_last
         self.date_next = self.date_last + timedelta(days=self.frequency)
         if self.date_next >= date.today():
-            self._alert_state = 0
+            self.alert_state = 0
         else:
-            self._alert_state = 1
+            self.alert_state = 1
 
     def to_dict(self):
         return {
