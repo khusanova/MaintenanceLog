@@ -30,6 +30,11 @@ class LogEntry:
         self.alert_state += 1
         self.date_next = new_date
 
+    def complete_task(self):
+        self.date_last = date.today()
+        self.date_next = self.date_last + timedelta(days=self.frequency)
+        self.alert_state = 0
+
     @property
     def frequency(self):
         return self._frequency
