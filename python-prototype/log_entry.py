@@ -5,12 +5,17 @@ class LogEntry:
     ALERTS = ['green', 'yellow', 'red', 'infrared']
     TJD_OFFSET = date(1968, 05, 24).toordinal()
 
-    def __init__(self, content: str, frequency: int):
+    def __init__(self, content: str, frequency: int, date_last = None):
         self.content = content
         self.frequency = frequency
-        self.date_last = date.today()
-        self.date_next = date.today() + timedelta(days=self.frequency)
-        self.alert_state = 0
+        if date_last is None:
+            date_last = date.today()
+        self.date_last = date_last
+        self.date_next = self.date_last + timedelta(days=self.frequency)
+        if self.date_next >= date.today():
+            self.alert_state = 0
+        else:
+            self.alert_state = 1
 
     def to_dict(self):
         return {
