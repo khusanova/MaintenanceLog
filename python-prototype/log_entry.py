@@ -27,12 +27,12 @@ class LogEntry:
         }
 
     def postpone_task(self, new_date: date):
-        self._alert_state += 1
+        self.alert_state += 1
         self.date_next = new_date
 
     @property
     def alert_state(self):
-        return self.ALERTS[self._alert_state]
+        return self._alert_state
 
     @alert_state.setter
     def alert_state(self, value):
@@ -43,11 +43,15 @@ class LogEntry:
         else:
             self._alert_state = value
 
+    @property
+    def alert_color(self):
+        return self.ALERTS[self._alert_state]
+
     @classmethod
     def from_dict(cls, data: dict):
         date_last = date.fromordinal(data['date_last'])
         date_next = date.fromordinal(data['date_next'])
-        entry = cls(data['content'], data['frequency'], date_last = date_last)
+        entry = cls(data['content'], data['frequency'], date_last=date_last)
         entry.date_next = date_next
         return entry
 
