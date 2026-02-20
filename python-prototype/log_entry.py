@@ -30,5 +30,5 @@ class LogEntry:
         return entry
 
     @staticmethod
-    def to_mjd(cls, date_to_convert):
-        return date_to_convert.toordinal() - cls.MJD_OFFSET
+    def to_mjd(date_to_convert):
+        return date_to_convert.toordinal() - LogEntry.MJD_OFFSET
