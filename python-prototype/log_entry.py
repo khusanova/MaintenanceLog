@@ -3,7 +3,7 @@ from datetime import date, timedelta
 
 class LogEntry:
     ALERTS = ['green', 'yellow', 'red', 'infrared']
-
+    MJD_OFFSET = date(1858, 11, 17).toordinal()
 
     def __init__(self, content: str, frequency: int):
         self.content = content
@@ -28,3 +28,7 @@ class LogEntry:
         entry.date_next = date.fromordinal(data['date_next'])
         entry.alert_state = data['alert_state']
         return entry
+
+    @staticmethod
+    def to_mjd(cls, date_to_convert):
+        return date_to_convert.toordinal() - cls.MJD_OFFSET
