@@ -31,6 +31,16 @@ class LogEntry:
         self.date_next = new_date
 
     @property
+    def frequency(self):
+        return self._frequency
+
+    @frequency.setter
+    def frequency(self, value):
+        if not isinstance(value, int):
+            raise TypeError
+        self._frequency = value
+
+    @property
     def date_last(self):
         return self._date_last
 
