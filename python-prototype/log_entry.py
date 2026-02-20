@@ -26,6 +26,10 @@ class LogEntry:
             "alert_state": self.alert_state
         }
 
+    def postpone_task(self, new_date: date):
+        self._alert_state += 1
+        self.date_next = new_date
+
     @property
     def alert_state(self):
         return self.ALERTS[self._alert_state]
