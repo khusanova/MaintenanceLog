@@ -21,6 +21,9 @@ class LogEntry:
             "alert_state": self.alert_state
         }
 
+    def get_alert_state(self):
+        return self.ALERTS[self.alert_state]
+
     @classmethod
     def from_dict(cls, data: dict):
         entry = cls(data['content'], data['frequency'])
