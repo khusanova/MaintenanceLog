@@ -31,6 +31,18 @@ class LogEntry:
         self.date_next = new_date
 
     @property
+    def date_last(self):
+        return self._date_last
+
+    @date_last.setter
+    def date_last(self, value):
+        if type(value) is not date:
+            raise TypeError
+        if value > date.today():
+            raise ValueError("The task completion date is in the future.")
+        self._date_last = value
+
+    @property
     def alert_state(self):
         return self._alert_state
 
@@ -40,8 +52,7 @@ class LogEntry:
             raise TypeError
         if not (0 <= value < 4):
             raise ValueError
-        else:
-            self._alert_state = value
+        self._alert_state = value
 
     @property
     def alert_color(self):
