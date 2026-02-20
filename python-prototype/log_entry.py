@@ -32,10 +32,10 @@ class LogEntry:
 
     @classmethod
     def from_dict(cls, data: dict):
-        entry = cls(data['content'], data['frequency'])
-        entry.date_last = date.fromordinal(data['date_last'])
-        entry.date_next = date.fromordinal(data['date_next'])
-        entry.alert_state = data['alert_state']
+        date_last = date.fromordinal(data['date_last'])
+        date_next = date.fromordinal(data['date_next'])
+        entry = cls(data['content'], data['frequency'], date_last = date_last)
+        entry.date_next = date_next
         return entry
 
     @staticmethod
