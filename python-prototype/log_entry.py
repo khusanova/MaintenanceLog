@@ -3,7 +3,7 @@ from datetime import date, timedelta
 
 class LogEntry:
     ALERTS = ['green', 'yellow', 'red', 'infrared']
-    MJD_OFFSET = date(1858, 11, 17).toordinal()
+    TJD_OFFSET = date(1968, 05, 24).toordinal()
 
     def __init__(self, content: str, frequency: int):
         self.content = content
@@ -33,5 +33,5 @@ class LogEntry:
         return entry
 
     @staticmethod
-    def to_mjd(date_to_convert):
-        return date_to_convert.toordinal() - LogEntry.MJD_OFFSET
+    def to_tjd(date_to_convert):
+        return date_to_convert.toordinal() - LogEntry.TJD_OFFSET
