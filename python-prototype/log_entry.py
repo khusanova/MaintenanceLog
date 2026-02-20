@@ -34,6 +34,15 @@ class LogEntry:
     def alert_state(self):
         return self.ALERTS[self._alert_state]
 
+    @alert_state.setter
+    def alert_state(self, value):
+        if type(value) is not int:
+            raise TypeError
+        if not (0 <= value < 4):
+            raise ValueError
+        else:
+            self._alert_state = value
+
     @classmethod
     def from_dict(cls, data: dict):
         date_last = date.fromordinal(data['date_last'])
