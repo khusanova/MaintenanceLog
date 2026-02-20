@@ -34,7 +34,7 @@ class LogEntry:
         self.date_last = date.today()
         self.date_next = self.date_last + timedelta(days=self.frequency)
         self.alert_state = 0
-        
+
     def change_frequency(self, frequency):
         self.frequency = frequency
         self.date_next = self.date_last + timedelta(days=self.frequency)
@@ -49,6 +49,8 @@ class LogEntry:
     def frequency(self, value):
         if not isinstance(value, int):
             raise TypeError
+        if not (0 < value < 3650):
+            raise ValueError
         self._frequency = value
 
     @property
