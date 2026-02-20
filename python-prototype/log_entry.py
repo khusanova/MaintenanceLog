@@ -46,7 +46,7 @@ class LogEntry:
 
     @date_last.setter
     def date_last(self, value):
-        if isinstance(value, date):
+        if not isinstance(value, date):
             raise TypeError
         if value > date.today():
             raise ValueError("The task completion date is in the future.")
@@ -58,7 +58,7 @@ class LogEntry:
 
     @date_next.setter
     def date_next(self, value):
-        if isinstance(value, date):
+        if not isinstance(value, date):
             raise TypeError
         self._date_next = value
 
@@ -68,7 +68,7 @@ class LogEntry:
 
     @alert_state.setter
     def alert_state(self, value):
-        if isinstance(value, int):
+        if not isinstance(value, int):
             raise TypeError
         if not (0 <= value < 4):
             raise ValueError
