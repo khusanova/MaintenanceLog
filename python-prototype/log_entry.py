@@ -3,7 +3,7 @@ from datetime import date, timedelta
 
 class LogEntry:
     ALERTS = ['green', 'yellow', 'red', 'infrared']
-    TJD_OFFSET = date(1968, 05, 24).toordinal()
+    TJD_OFFSET = date(1968, 5, 24).toordinal()
 
     def __init__(self, content: str, frequency: int, date_last = None):
         self.content = content
@@ -13,9 +13,9 @@ class LogEntry:
         self.date_last = date_last
         self.date_next = self.date_last + timedelta(days=self.frequency)
         if self.date_next >= date.today():
-            self.alert_state = 0
+            self._alert_state = 0
         else:
-            self.alert_state = 1
+            self._alert_state = 1
 
     def to_dict(self):
         return {
@@ -26,8 +26,9 @@ class LogEntry:
             "alert_state": self.alert_state
         }
 
-    def get_alert_state(self):
-        return self.ALERTS[self.alert_state]
+    @property
+    def alert_state(self):
+        return self.ALERTS[self._alert_state]
 
     @classmethod
     def from_dict(cls, data: dict):
