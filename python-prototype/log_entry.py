@@ -43,6 +43,16 @@ class LogEntry:
         self._date_last = value
 
     @property
+    def date_next(self):
+        return self._date_next
+
+    @date_next.setter
+    def date_next(self, value):
+        if type(value) is not date:
+            raise TypeError
+        self._date_next = value
+
+    @property
     def alert_state(self):
         return self._alert_state
 
