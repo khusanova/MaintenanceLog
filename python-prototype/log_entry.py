@@ -2,10 +2,10 @@ from datetime import date, timedelta
 
 
 class LogEntry:
-    ALERTS = ['green', 'yellow', 'red', 'infrared']
+    ALERTS = ['', 'yellow', 'red', 'infrared']
     TJD_OFFSET = date(1968, 5, 24).toordinal()
 
-    def __init__(self, content: str, frequency: int, date_last = None):
+    def __init__(self, content: str, frequency: int, date_last=None):
         self.content = content
         self.frequency = frequency
         if date_last is None:
@@ -36,7 +36,7 @@ class LogEntry:
 
     @date_last.setter
     def date_last(self, value):
-        if type(value) is not date:
+        if isinstance(value, date):
             raise TypeError
         if value > date.today():
             raise ValueError("The task completion date is in the future.")
@@ -48,7 +48,7 @@ class LogEntry:
 
     @date_next.setter
     def date_next(self, value):
-        if type(value) is not date:
+        if isinstance(value, date):
             raise TypeError
         self._date_next = value
 
@@ -58,7 +58,7 @@ class LogEntry:
 
     @alert_state.setter
     def alert_state(self, value):
-        if type(value) is not int:
+        if isinstance(value, int):
             raise TypeError
         if not (0 <= value < 4):
             raise ValueError
