@@ -1,9 +1,30 @@
 import json
 import logging
+import questionary
 
 
 LOADTASKSERROR = "Could not load old list of tasks. Created an empty list."
 PATHTOTASKS = './tasks.json'
+
+
+def get_content():
+    while True:
+        try:
+            content = input("Enter your task: ")
+            if not content.strip():
+                raise ValueError("Received empty string.")
+        except ValueError as e:
+            print(e)
+        else:
+            return content
+
+
+def get_date():
+    pass
+
+
+def create_task():
+    content = get_content()
 
 
 def load_tasks():
