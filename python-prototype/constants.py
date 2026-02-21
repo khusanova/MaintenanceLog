@@ -1,0 +1,1 @@
+ALERTS = ['green', 'yellow', 'red', 'auto-destruct']
