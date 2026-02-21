@@ -30,7 +30,20 @@ def parse_date(date_string):
 
 
 def get_date():
-    pass
+    user_choice = questionary.select("When did you complete the task?", [
+        "today", "other"]).ask()
+    if user_choice == "today":
+        return date.today()
+    else:
+        while True:
+            try:
+                user_input = input("Enter date (DD/MM/YYYY)")
+                day, month, year = parse_date(user_input)
+                date_last = date(year, month, day)
+            except Exception as e:
+                logging.error(e)
+            else:
+                return date_last
 
 
 def create_task():
