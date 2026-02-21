@@ -11,6 +11,8 @@ class User:
         self.alert_state = max(log_entry.alert_state for log_entry in
                                    log_entries)
         self.start_date = date.today()
+        self.date_last_update = date.today()
+        self.distance = 0
 
     @property
     def log_entries(self):
