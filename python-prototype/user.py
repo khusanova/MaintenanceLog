@@ -14,6 +14,15 @@ class User:
         self.date_last_update = date.today()
         self.distance = 0
 
+    def update_status(self):
+        today_ordinal = date.today().toordinal()
+        alert_state_duration = max(today_ordinal -
+                                   log_entry.date_next.toordinal() for
+                                   log_entry in self.log_entries)
+        self.distance += (today_ordinal - self.date_last_update.toordinal() -
+                          alert_state_duration)
+        self.date_last_update = date.today()
+
     @property
     def log_entries(self):
         return self._log_entries
