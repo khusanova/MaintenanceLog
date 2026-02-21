@@ -2,6 +2,7 @@ import json
 import logging
 from datetime import date
 import questionary
+from log_entry import LogEntry
 
 
 LOADTASKSERROR = "Could not load old list of tasks. Created an empty list."
