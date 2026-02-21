@@ -1,5 +1,6 @@
 import json
 import logging
+from datetime import date
 import questionary
 
 
@@ -17,6 +18,15 @@ def get_content():
             print(e)
         else:
             return content
+
+
+def parse_date(date_string):
+    try:
+        day, month, year = date_string.split("/")
+        day, month, year = int(day), int(month), int(year)
+        return day, month, year
+    except Exception as e:
+        logging.error(e)
 
 
 def get_date():
