@@ -1,1 +1,1 @@
-ALERTS = ['', 'yellow', 'red', 'infrared']
+ALERTS = ['green', 'yellow', 'red', 'auto-destruct']
