@@ -8,8 +8,6 @@ class User:
         self.name = name
         self.starship_name = starship_name
         self.log_entries = log_entries
-        self.alert_state = max(log_entry.alert_state for log_entry in
-                                   log_entries)
         self.start_date = date.today()
         self.date_last_update = date.today()
         self.distance = 0
@@ -36,8 +34,16 @@ class User:
         self._log_entries = value
 
     @property
-    def alert_color(self):
-        return ALERTS[self.alert_state]
+    def ship_alert_color(self):
+        today = date.today()
+        ship_last_state = 0
+        for log_entry in self.log_entries:
+            last_state = log_entry.alert_state
+            if log_entry.next < today:
+                last_state += 1
+            if last_state > ship_last_state:
+                ship_last_state = last_state
+        return ALERTS[ship_last_state]
 
     @property
     def alert_durations_since_last_update(self):
