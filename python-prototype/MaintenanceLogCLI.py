@@ -57,7 +57,15 @@ def get_number(prompt):
 
 def create_task():
     content = get_content()
-
+    date_last = get_date()
+    frequency = get_number("Enter frequency: ")
+    try:
+        new_entry = LogEntry(content, frequency, date_last = date_last)
+    except Exception as e:
+        logging.error(e)
+        return None
+    else:
+        return new_entry
 
 def load_tasks():
     """Load tasks from the JSON file at PATHTOTASKS.
