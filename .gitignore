@@ -64,3 +64,4 @@ fastlane/test_output
 #PyCharm
 .idea
 python-prototype/__pycache__/
+python-prototype/test.py

@@ -1,10 +1,72 @@
 import json
 import logging
+from datetime import date
+import questionary
+from log_entry import LogEntry
 
 
 LOADTASKSERROR = "Could not load old list of tasks. Created an empty list."
 PATHTOTASKS = './tasks.json'
 
+
+def get_content():
+    while True:
+        try:
+            content = input("Enter your task: ")
+            if not content.strip():
+                raise ValueError("Received empty string.")
+        except ValueError as e:
+            print(e)
+        else:
+            return content
+
+
+def parse_date(date_string):
+    try:
+        day, month, year = date_string.split("/")
+        day, month, year = int(day), int(month), int(year)
+        return day, month, year
+    except Exception as e:
+        logging.error(e)
+
+
+def get_date():
+    user_choice = questionary.select("When did you complete the task?", [
+        "today", "other"]).ask()
+    if user_choice == "today":
+        return date.today()
+    else:
+        while True:
+            try:
+                user_input = input("Enter date (DD/MM/YYYY)")
+                day, month, year = parse_date(user_input)
+                date_last = date(year, month, day)
+            except Exception as e:
+                logging.error(e)
+            else:
+                return date_last
+
+
+def get_number(prompt):
+    while True:
+        try:
+            number = int(input(prompt))
+        except ValueError as e:
+            print(e)
+        else:
+            return number
+
+def create_task():
+    content = get_content()
+    date_last = get_date()
+    frequency = get_number("Enter frequency: ")
+    try:
+        new_entry = LogEntry(content, frequency, date_last = date_last)
+    except Exception as e:
+        logging.error(e)
+        return None
+    else:
+        return new_entry
 
 def load_tasks():
     """Load tasks from the JSON file at PATHTOTASKS.
