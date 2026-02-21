@@ -1,4 +1,5 @@
 from datetime import date
+from log_entry import LogEntry
 
 
 class User:
@@ -9,3 +10,15 @@ class User:
         self.alert_state = max(log_entry.alert_state for log_entry in
                                    log_entries)
         self.start_date = date.today()
+
+    @property
+    def log_entries(self):
+        return self._log_entries
+
+    @log_entries.setter
+    def log_entries(self, value):
+        if not isinstance(value, list):
+            raise TypeError
+        if not all(isinstance(x, LogEntry) for x in value):
+            raise TypeError
+        self._log_entries = value
