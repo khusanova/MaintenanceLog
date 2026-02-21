@@ -1,8 +1,8 @@
 from datetime import date, timedelta
+from constants import ALERTS
 
 
 class LogEntry:
-    ALERTS = ['', 'yellow', 'red', 'infrared']
     TJD_OFFSET = date(1968, 5, 24).toordinal()
 
     def __init__(self, content: str, frequency: int, date_last=None):
@@ -89,7 +89,7 @@ class LogEntry:
 
     @property
     def alert_color(self):
-        return self.ALERTS[self._alert_state]
+        return ALERTS[self._alert_state]
 
     @classmethod
     def from_dict(cls, data: dict):

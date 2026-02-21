@@ -1,5 +1,6 @@
 from datetime import date
 from log_entry import LogEntry
+from constants import ALERTS
 
 
 class User:

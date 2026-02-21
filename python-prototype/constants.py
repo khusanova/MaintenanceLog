@@ -1,0 +1,1 @@
+ALERTS = ['', 'yellow', 'red', 'infrared']
