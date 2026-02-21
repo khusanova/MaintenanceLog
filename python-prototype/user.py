@@ -23,3 +23,7 @@ class User:
         if not all(isinstance(x, LogEntry) for x in value):
             raise TypeError
         self._log_entries = value
+
+    @property
+    def alert_color(self):
+        return ALERTS[self.alert_state]
