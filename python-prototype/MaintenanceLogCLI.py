@@ -46,6 +46,15 @@ def get_date():
                 return date_last
 
 
+def get_number(prompt):
+    while True:
+        try:
+            number = int(input(prompt))
+        except ValueError as e:
+            print(e)
+        else:
+            return number
+
 def create_task():
     content = get_content()
 
